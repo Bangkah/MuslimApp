@@ -1,21 +1,23 @@
-FROM php:8.2-apache
+FROM php:8.4-fpm
 
 RUN apt-get update && apt-get install -y \
-    git unzip libzip-dev libonig-dev libxml2-dev \
-    && docker-php-ext-install pdo pdo_mysql zip mbstring
+    git zip unzip curl \
+    libzip-dev libonig-dev libxml2-dev \
+    sqlite3 libsqlite3-dev pkg-config \
+    && docker-php-ext-configure pdo_sqlite --with-pdo-sqlite \
+    && docker-php-ext-install pdo pdo_sqlite mbstring zip
 
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-WORKDIR /var/www/html
+WORKDIR /var/www
 
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader
+# Install composer (fix untuk Podman)
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
-RUN php artisan key:generate
+RUN composer install --optimize-autoloader
 
-RUN chmod -R 777 storage bootstrap/cache
+RUN php artisan config:cache || true
+RUN php artisan route:cache || true
+RUN php artisan view:cache || true
 
-EXPOSE 80
-
-CMD ["apache2-foreground"]
+CMD ["php-fpm"]

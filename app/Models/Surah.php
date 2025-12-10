@@ -10,14 +10,11 @@ class Surah extends Model
     use HasFactory;
 
     protected $fillable = [
-        'number',
-        'name',
-        'name_latin',
-        'number_of_ayah'
+        'number','name_ar','name_en','name_id','revelation','ayah_count'
     ];
 
     public function ayahs()
     {
-        return $this->hasMany(Ayah::class, 'surah_id');
+        return $this->hasMany(Ayah::class);
     }
 }

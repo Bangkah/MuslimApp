@@ -10,20 +10,18 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('ayahs', function (Blueprint $table) {
-    $table->id();
-    $table->foreignId('surah_id')->constrained('surahs')->onDelete('cascade');
-    $table->integer('ayah_number');
-    $table->text('text_arab');
-    $table->text('translation_id')->nullable();
-    $table->longText('tafsir_id')->nullable();
-    $table->timestamps();
-});
+{
+    Schema::create('ayahs', function (Blueprint $table) {
+        $table->id();
+        $table->integer('surah_id');
+        $table->integer('number');
+        $table->text('text_ar');
+        $table->text('text_id')->nullable();
+        $table->text('tafsir')->nullable();
+        $table->timestamps();
+    });
+}
 
-
-
-    }
 
     /**
      * Reverse the migrations.

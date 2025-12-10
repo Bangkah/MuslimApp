@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: muslimapp-backend
+    env: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    disk:
+      name: app-storage
+      mountPath: /app/storage
+      sizeGB: 1
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        generateValue: true
+
+    disk:
+      name: app-storage
+      mountPath: /app/storage

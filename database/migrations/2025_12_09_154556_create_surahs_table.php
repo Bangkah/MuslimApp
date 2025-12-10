@@ -6,18 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
-    {
-        Schema::create('surahs', function (Blueprint $table) {
-    $table->id();
-    $table->integer('number');
-    $table->string('name');
-    $table->string('name_latin');
-    $table->integer('number_of_ayah');
-    $table->timestamps();
-});
+    public function up(): void
+{
+    Schema::create('surahs', function (Blueprint $table) {
+        $table->id();
+        $table->integer('number');
+        $table->string('name_ar');
+        $table->string('name_en');
+        $table->string('name_id');
+        $table->string('revelation');
+        $table->integer('ayah_count');
+        $table->timestamps();
+    });
+}
 
-    }
 
     public function down()
     {

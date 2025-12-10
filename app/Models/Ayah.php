@@ -10,11 +10,7 @@ class Ayah extends Model
     use HasFactory;
 
     protected $fillable = [
-        'surah_id',
-        'ayah_number',
-        'text_arab',
-        'translation_id',
-        'tafsir_id',
+        'surah_id','number','text_ar','text_id','tafsir'
     ];
 
     public function surah()
