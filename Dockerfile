@@ -11,7 +11,6 @@ WORKDIR /var/www
 
 COPY . .
 
-# Install composer (fix untuk Podman)
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 RUN composer install --optimize-autoloader
