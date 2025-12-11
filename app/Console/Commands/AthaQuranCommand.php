@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Surah;
 use App\Models\Ayah;
+use Illuminate\Support\Facades\DB;
 
 class AthaQuranCommand extends Command
 {
@@ -34,6 +35,8 @@ class AthaQuranCommand extends Command
 
         $this->info("📘 Total Surah : {$totalSurah}");
         $this->info("📗 Total Ayat  : {$totalAyat}");
+
+        return 0;
     }
 
     // ------------------------------------------------------
@@ -45,6 +48,7 @@ class AthaQuranCommand extends Command
         Ayah::truncate();
 
         $this->warn("⚠️ Semua data Quran sudah dihapus.");
+        return 0;
     }
 
     // ------------------------------------------------------
@@ -54,46 +58,56 @@ class AthaQuranCommand extends Command
     {
         $this->info("⏳ Mengimpor data Quran...");
 
-        Surah::truncate();
-        Ayah::truncate();
-
         $files = Storage::files('quran');
 
-        if (empty($files)) {
+        if (count($files) === 0) {
             return $this->error("❌ Tidak ada file JSON ditemukan di storage/app/quran");
         }
 
-        foreach ($files as $file) {
+        DB::transaction(function () use ($files) {
+            Surah::truncate();
+            Ayah::truncate();
 
-            $json = json_decode(Storage::get($file), true);
+            $bar = $this->output->createProgressBar(count($files));
+            $bar->start();
 
-            if (!$json) {
-                $this->error("❌ JSON rusak: $file");
-                continue;
-            }
+            foreach ($files as $file) {
+                $json = json_decode(Storage::get($file), true);
 
-            // Insert Surah
-            $surah = Surah::create([
-                'number'      => $json['number'] ?? 0,
-                'name_ar'     => $json['name_ar'] ?? '',
-                'name_en'     => $json['name_en'] ?? '',
-                'name_id'     => $json['name_id'] ?? '',
-                'revelation'  => $json['revelation'] ?? '',
-                'ayah_count'  => isset($json['ayahs']) ? count($json['ayahs']) : 0,
-            ]);
+                if (!$json) {
+                    $this->error("❌ JSON rusak: $file");
+                    $bar->advance();
+                    continue;
+                }
 
-            // Insert Ayahs
-            foreach ($json['ayahs'] as $a) {
-                Ayah::create([
-                    'surah_id' => $surah->id,
-                    'number'   => $a['number'] ?? 0,
-                    'text_ar'  => $a['text_ar'] ?? '',
-                    'text_id'  => $a['text_id'] ?? null,
-                    'tafsir'   => $a['tafsir'] ?? null,
+                $surah = Surah::create([
+                    'number'      => $json['number'] ?? 0,
+                    'name_ar'     => $json['name_ar'] ?? '',
+                    'name_en'     => $json['name_en'] ?? '',
+                    'name_id'     => $json['name_id'] ?? '',
+                    'revelation'  => $json['revelation'] ?? '',
+                    'ayah_count'  => isset($json['ayahs']) ? count($json['ayahs']) : 0,
                 ]);
-            }
-        }
 
-        $this->info("🎉 Import Quran selesai.");
+                if (isset($json['ayahs']) && is_array($json['ayahs'])) {
+                    foreach ($json['ayahs'] as $a) {
+                        Ayah::create([
+                            'surah_id' => $surah->id,
+                            'number'   => $a['number'] ?? 0,
+                            'text_ar'  => $a['text_ar'] ?? '',
+                            'text_id'  => $a['text_id'] ?? null,
+                            'tafsir'   => $a['tafsir'] ?? null,
+                        ]);
+                    }
+                }
+
+                $bar->advance();
+            }
+
+            $bar->finish();
+        });
+
+        $this->info("\n🎉 Import Quran selesai.");
+        return 0;
     }
 }

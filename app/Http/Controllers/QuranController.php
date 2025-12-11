@@ -1,27 +1,59 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
-use App\Models\Surah;
-use App\Models\Ayah;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 
 class QuranController extends Controller
 {
-    public function surahs()
+    /**
+     * Tampilkan daftar surah di halaman frontend.
+     */
+    public function index()
     {
-        return Surah::select('id','number','name_ar','name_id','revelation','ayah_count')->get();
+        $response = Http::get(route('api.surahs'));
+
+        if ($response->failed()) {
+            abort(500, 'Gagal mengambil data surah.');
+        }
+
+        $surahs = $response->json('data');
+
+        return view('quran.index', compact('surahs'));
     }
 
-    public function surah($id)
+    /**
+     * Tampilkan detail surah beserta ayat-ayatnya di halaman frontend.
+     */
+    public function show($id)
     {
-        return [
-            'surah' => Surah::findOrFail($id),
-            'ayahs' => Ayah::where('surah_id', $id)->get()
-        ];
+        $response = Http::get(route('api.surah', ['surah' => $id]));
+
+        if ($response->failed()) {
+            abort(500, 'Gagal mengambil detail surah.');
+        }
+
+        $surah = $response->json('data');
+
+        return view('quran.show', compact('surah'));
     }
 
-    public function ayah($id)
+    /**
+     * Tampilkan hasil pencarian ayat atau Quran di halaman frontend.
+     */
+    public function search()
     {
-        return Ayah::findOrFail($id);
+        $query = request('q');
+
+        $response = Http::get(route('api.search', ['q' => $query]));
+
+        if ($response->failed()) {
+            abort(500, 'Gagal melakukan pencarian.');
+        }
+
+        $results = $response->json('data');
+
+        return view('quran.search', compact('results'));
     }
 }

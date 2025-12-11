@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\QuranController;
+use App\Http\Controllers\Api\PrayerTimeController;
+use App\Http\Controllers\Api\LocationDetectController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,3 +23,7 @@ Route::get('/quran', [QuranController::class, 'quran']);
 
 // Pencarian ayat atau Quran berdasarkan kata kunci
 Route::get('/search', [QuranController::class, 'search']);
+
+Route::get('/prayertime', [PrayerTimeController::class, 'index']);
+
+Route::get('/detect-location', [LocationDetectController::class, 'detect']);

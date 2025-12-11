@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3c16cb86c42230c6c023d9a5d9bcf42",
+    "content-hash": "1bf487e71979890c8ce04ca4a863c0ff",
     "packages": [
         {
             "name": "brick/math",
@@ -1053,6 +1053,158 @@
             "time": "2025-08-22T14:27:06+00:00"
         },
         {
+            "name": "islamic-network/prayer-times",
+            "version": "1.0.29",
+            "source": {
+                "type": "git",
+                "url": "https://1x.ax/islamic-network/libraries/prayer-times",
+                "reference": "f7ed3a2467fbced252a0914c8b202c8b61ca58b9"
+            },
+            "require": {
+                "islamic-network/prayer-times-moonsighting": "^1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "IslamicNetwork\\PrayerTimes\\": "src/PrayerTimes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "Precise and Powerful PHP Prayer Times Library",
+            "time": "2024-03-17T08:24:32+00:00"
+        },
+        {
+            "name": "islamic-network/prayer-times-moonsighting",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://1x.ax/islamic-network/libraries/prayer-times-moonsighting",
+                "reference": "73f2b0ee9d41fa145f262d372a06cb9a9dae353e"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "IslamicNetwork\\MoonSighting\\": "src/MoonSighting/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "PHP Prayer Times Library to Calculate Fajr and Isha times per moonsighting.com",
+            "homepage": "https://flarum.org/",
+            "keywords": [
+                "islam",
+                "moonsighting.com",
+                "prayer times"
+            ],
+            "time": "2020-07-22T06:16:24+00:00"
+        },
+        {
+            "name": "jhonoryza/geniusts-prayer-times",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jhonoryza/geniusts-prayer-times.git",
+                "reference": "7b5373a5acab52430cbb214e90cd1a174da910f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jhonoryza/geniusts-prayer-times/zipball/7b5373a5acab52430cbb214e90cd1a174da910f8",
+                "reference": "7b5373a5acab52430cbb214e90cd1a174da910f8",
+                "shasum": ""
+            },
+            "require": {
+                "nesbot/carbon": "^3.0.0",
+                "php": "^8.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GeniusTS\\PrayerTimes\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Abdul-Kader Zein-Eddin",
+                    "email": "aboudeh1987@gmail.com"
+                }
+            ],
+            "description": "A PHP package to calculate prayer times",
+            "support": {
+                "source": "https://github.com/jhonoryza/geniusts-prayer-times/tree/1.0.0"
+            },
+            "time": "2025-07-29T20:13:46+00:00"
+        },
+        {
+            "name": "jhonoryza/laravel-prayertime",
+            "version": "1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jhonoryza/laravel-prayertime.git",
+                "reference": "9713c2dcb7ab6d85fcc1e72e03f6339ae04bd098"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jhonoryza/laravel-prayertime/zipball/9713c2dcb7ab6d85fcc1e72e03f6339ae04bd098",
+                "reference": "9713c2dcb7ab6d85fcc1e72e03f6339ae04bd098",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.8",
+                "illuminate/support": "^10.0|^11.0|^12.0",
+                "islamic-network/prayer-times": "^1.0",
+                "jhonoryza/geniusts-prayer-times": "^1.0.0",
+                "php": "^8.2",
+                "symfony/dom-crawler": "^7.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.14",
+                "orchestra/testbench": "^8.18|^9.0|^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jhonoryza\\LaravelPrayertime\\PrayerTimeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jhonoryza\\LaravelPrayertime\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "fajar sidik priatna",
+                    "email": "jardik.oryza@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/jhonoryza/laravel-prayertime/issues",
+                "source": "https://github.com/jhonoryza/laravel-prayertime/tree/1.2.2"
+            },
+            "time": "2025-07-29T20:40:52+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v12.41.1",
             "source": {
@@ -1519,6 +1671,88 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.10.2"
             },
             "time": "2025-11-20T16:29:12+00:00"
+        },
+        {
+            "name": "laravolt/indonesia",
+            "version": "v0.38",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravolt/indonesia.git",
+                "reference": "73264dde65245b6089bef89827281198e1f7c1f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravolt/indonesia/zipball/73264dde65245b6089bef89827281198e1f7c1f2",
+                "reference": "73264dde65245b6089bef89827281198e1f7c1f2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0|^10.0",
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^9.0|^10.5|^11.5.3"
+            },
+            "suggest": {
+                "laravolt/suitable": "Required if you want to access editor panel",
+                "spatie/geocoder": "Synchronize latitude longitude data directly using Google's Geocoding Service"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Indonesia": "Laravolt\\Indonesia\\Facade"
+                    },
+                    "providers": [
+                        "Laravolt\\Indonesia\\ServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravolt\\Indonesia\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bayu Hendra Winata",
+                    "email": "bayu.hendra@javan.co.id"
+                },
+                {
+                    "name": "Akbar Adhatama",
+                    "email": "am.adhatama@gmail.com"
+                },
+                {
+                    "name": "Deri Ramdani",
+                    "email": "deri.ramdani1@gmail.com"
+                }
+            ],
+            "description": "Package Laravel yang berisi data Provinsi, Kabupaten/Kota, Kecamatan, dan Keluarahan/Desa di seluruh Indonesia.",
+            "keywords": [
+                "desa",
+                "indonesia",
+                "kabupaten",
+                "kecamatan",
+                "kelurahan",
+                "kota",
+                "laravel",
+                "laravolt",
+                "provinsi"
+            ],
+            "support": {
+                "issues": "https://github.com/laravolt/indonesia/issues",
+                "source": "https://github.com/laravolt/indonesia/tree/v0.38"
+            },
+            "time": "2025-08-19T13:16:15+00:00"
         },
         {
             "name": "league/commonmark",
@@ -2078,6 +2312,73 @@
                 }
             ],
             "time": "2025-12-07T16:03:21+00:00"
+        },
+        {
+            "name": "masterminds/html5",
+            "version": "2.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Masterminds/html5-php.git",
+                "reference": "fcf91eb64359852f00d921887b219479b4f21251"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/fcf91eb64359852f00d921887b219479b4f21251",
+                "reference": "fcf91eb64359852f00d921887b219479b4f21251",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35 || ^5.7.21 || ^6 || ^7 || ^8 || ^9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Masterminds\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matt Butcher",
+                    "email": "technosophos@gmail.com"
+                },
+                {
+                    "name": "Matt Farina",
+                    "email": "matt@mattfarina.com"
+                },
+                {
+                    "name": "Asmir Mustafic",
+                    "email": "goetas@gmail.com"
+                }
+            ],
+            "description": "An HTML5 parser and serializer.",
+            "homepage": "http://masterminds.github.io/html5-php",
+            "keywords": [
+                "HTML5",
+                "dom",
+                "html",
+                "parser",
+                "querypath",
+                "serializer",
+                "xml"
+            ],
+            "support": {
+                "issues": "https://github.com/Masterminds/html5-php/issues",
+                "source": "https://github.com/Masterminds/html5-php/tree/2.10.0"
+            },
+            "time": "2025-07-25T09:04:22+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3660,6 +3961,78 @@
                 }
             ],
             "time": "2024-09-25T14:21:43+00:00"
+        },
+        {
+            "name": "symfony/dom-crawler",
+            "version": "v7.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/dom-crawler.git",
+                "reference": "0c5e8f20c74c78172a8ee72b125909b505033597"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/0c5e8f20c74c78172a8ee72b125909b505033597",
+                "reference": "0c5e8f20c74c78172a8ee72b125909b505033597",
+                "shasum": ""
+            },
+            "require": {
+                "masterminds/html5": "^2.6",
+                "php": ">=8.2",
+                "symfony/deprecation-contracts": "^2.5|^3",
+                "symfony/polyfill-ctype": "~1.8",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "require-dev": {
+                "symfony/css-selector": "^6.4|^7.0|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\DomCrawler\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Eases DOM navigation for HTML and XML documents",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/dom-crawler/tree/v7.4.1"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2025-12-06T15:47:47+00:00"
         },
         {
             "name": "symfony/error-handler",

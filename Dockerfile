@@ -15,6 +15,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 
 RUN composer install --optimize-autoloader
 
+RUN npm install
+
 RUN php artisan config:cache || true
 RUN php artisan route:cache || true
 RUN php artisan view:cache || true

@@ -7,9 +7,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.10",
+        "jhonoryza/laravel-prayertime": "^1.2",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
-        "laravel/tinker": "^2.10.1"
+        "laravel/tinker": "^2.10.1",
+        "laravolt/indonesia": "^0.38.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
